@@ -7,21 +7,7 @@ import photos from 'mocks/photos';
 import topics from 'mocks/topics';
 
 const HomeRoute = (props) => {
-
-
-  //Setting state for the favorited photos
-  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
-
-  //Function to toggle favorites
-  const toggleFavorite = (photoId) => {
-    // console.log("inside togglefav", photoId);
-    // console.log("favoritePhotos", favoritedPhotos);
-    if (favoritedPhotos.includes(photoId)) {
-      setFavoritedPhotos(favoritedPhotos.filter((id) => id !== photoId));
-    } else {
-      setFavoritedPhotos([...favoritedPhotos, photoId]);
-    }
-  }
+  const { toggleFavorite, favoritedPhotos } = props
 
   return (
     <div className="home-route">

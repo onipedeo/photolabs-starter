@@ -11,13 +11,14 @@ const PhotoListItem = (props) => {
 
   const onClick = () => {
     props.openModalDetails(props.photo);
-    console.log(props.photo);
+
   }
+  const isFavorited = favoritedPhotos && favoritedPhotos.includes(id);
 
   return (
     <>
       <div className="photo-list__item">
-        <PhotoFavButton isFavorited={favoritedPhotos.includes(id)} toggleFavorite={() => toggleFavorite(id)} />
+        <PhotoFavButton isFavorited={isFavorited} toggleFavorite={() => toggleFavorite(id)} />
         <img className="photo-list__image" src={urls.regular}
           onClick={onClick} alt="image of Photo" />
 

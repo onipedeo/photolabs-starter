@@ -4,6 +4,7 @@ import "../styles/PhotoList.scss";
 import "../styles/PhotoListItem.scss"
 import PhotoListItem from "./PhotoListItem";
 
+
 const PhotoList = (props) => {
   const { toggleFavorite, favoritedPhotos } = props;
   return (

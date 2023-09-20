@@ -22,10 +22,25 @@ const App = () => {
     setClickedPhoto(null);
   }
 
+  //Setting state for the favorited photos
+  const [favoritedPhotos, setFavoritedPhotos] = useState([]);
+
+  //Function to toggle favorites
+  const toggleFavorite = (photoId) => {
+    // console.log("inside togglefav", photoId);
+    // console.log("favoritePhotos", favoritedPhotos);
+    if (favoritedPhotos.includes(photoId)) {
+      setFavoritedPhotos(favoritedPhotos.filter((id) => id !== photoId));
+    } else {
+      setFavoritedPhotos([...favoritedPhotos, photoId]);
+    }
+  }
+
+
   return (
     <div className="App">
-      <HomeRoute openModalDetails={openModalDetails} />
-      {showModal && <PhotoDetailsModal photo={clickedPhoto} closeModal={closeModal} />}
+      <HomeRoute openModalDetails={openModalDetails} toggleFavorite={toggleFavorite} favoritedPhotos={favoritedPhotos} />
+      {showModal && <PhotoDetailsModal photo={clickedPhoto} closeModal={closeModal} toggleFavorite={toggleFavorite} favoritedPhotos={favoritedPhotos} />}
     </div>
   );
 };
