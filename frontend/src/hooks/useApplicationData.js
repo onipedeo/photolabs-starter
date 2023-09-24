@@ -1,5 +1,4 @@
-import React from "react";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 export const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
@@ -13,7 +12,9 @@ export const ACTIONS = {
 const initialState = {
   displayModal: false,
   favoritedPhotos: [],
-  clickedPhoto: null
+  clickedPhoto: null,
+  photoData: [],
+  topicData: []
 };
 
 const reducer = (state, action) => {
@@ -53,6 +54,8 @@ const useApplicationData = function() {
   const onClosePhotoDetailsModal = () => {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   }
+
+  
 
   return {
     state,
