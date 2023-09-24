@@ -3,6 +3,7 @@ import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
+// Favbadge component
 const FavBadge = ({ isFavPhotoExist }) => {
   return (
     <div className='fav-badge'>

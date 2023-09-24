@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 
-export const ACTIONS = {
+const ACTIONS = {
   FAV_PHOTO_ADDED: 'FAV_PHOTO_ADDED',
   FAV_PHOTO_REMOVED: 'FAV_PHOTO_REMOVED',
   SET_PHOTO_DATA: 'SET_PHOTO_DATA',
@@ -9,6 +9,7 @@ export const ACTIONS = {
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS'
 }
 
+//Intial States
 const initialState = {
   displayModal: false,
   favoritedPhotos: [],
@@ -17,6 +18,7 @@ const initialState = {
   topicData: []
 };
 
+//Use Reducer to manage state changes
 const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.SET_TOPIC_DATA:
@@ -42,6 +44,7 @@ const reducer = (state, action) => {
   }
 };
 
+//Custom Hook
 const useApplicationData = function() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -61,7 +64,7 @@ const useApplicationData = function() {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   }
 
-
+  //API Calls - Photos
   useEffect(() => {
     fetch('/api/photos')
       .then(res => res.json())
@@ -70,6 +73,7 @@ const useApplicationData = function() {
       })
   }, [])
 
+  //API Calls - Topics
   useEffect(() => {
     fetch('/api/topics')
       .then(res => res.json())
@@ -78,6 +82,7 @@ const useApplicationData = function() {
       })
   }, [])
 
+  //API Calls - Photos by Topic for the Top Navigation
   const getPhotosByTopic = (id) => {
     return fetch(`/api/topics/photos/${id}`)
       .then((res) => {

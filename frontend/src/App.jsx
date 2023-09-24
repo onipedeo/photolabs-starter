@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
 
 import HomeRoute from 'routes/HomeRoute';
@@ -14,8 +13,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute openModalDetails={setPhotoSelected} toggleFavorite={updateToFavPhotoIds} favoritedPhotos={state.favoritedPhotos} photos={state.photoData} topics={state.topicData} getPhotosByTopic={getPhotosByTopic} />
-      {state.clickedPhoto && <PhotoDetailsModal photo={state.clickedPhoto} closeModal={onClosePhotoDetailsModal} toggleFavorite={updateToFavPhotoIds} favoritedPhotos={state.favoritedPhotos} />}
+      <HomeRoute
+        openModalDetails={setPhotoSelected}
+        toggleFavorite={updateToFavPhotoIds}
+        favoritedPhotos={state.favoritedPhotos}
+        photos={state.photoData}
+        topics={state.topicData}
+        getPhotosByTopic={getPhotosByTopic}
+      />
+      {state.clickedPhoto && <PhotoDetailsModal
+        photo={state.clickedPhoto}
+        closeModal={onClosePhotoDetailsModal}
+        toggleFavorite={updateToFavPhotoIds}
+        favoritedPhotos={state.favoritedPhotos}
+      />}
     </div>
   );
 };
