@@ -19,6 +19,12 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case ACTIONS.SET_TOPIC_DATA:
+      return { ...state, topicData: action.payload }
+
+    case ACTIONS.SET_PHOTO_DATA:
+      return { ...state, photoData: action.payload }
+
     case ACTIONS.FAV_PHOTO_ADDED:
       return { ...state, favoritedPhotos: [...state.favoritedPhotos, action.payload] };
 
@@ -55,13 +61,39 @@ const useApplicationData = function() {
     dispatch({ type: ACTIONS.DISPLAY_PHOTO_DETAILS });
   }
 
-  
+
+  useEffect(() => {
+    fetch('/api/photos')
+      .then(res => res.json())
+      .then(photosData => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: photosData });
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/topics')
+      .then(res => res.json())
+      .then(topicsData => {
+        dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: topicsData });
+      })
+  }, [])
+
+  const getPhotosByTopic = (id) => {
+    return fetch(`/api/topics/photos/${id}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })
+      })
+  }
 
   return {
     state,
     updateToFavPhotoIds,
     setPhotoSelected,
-    onClosePhotoDetailsModal
+    onClosePhotoDetailsModal,
+    getPhotosByTopic
   }
 
 }

@@ -5,7 +5,7 @@ import "../styles/TopicListItem.scss";
 const TopicListItem = (props) => {
   return (
     <div className="topic-list__item">
-      <span className="topic-list__item"> {props.topic}</span>
+      <span onClick={props.getPhotosByTopic}> {props.topic}</span>
     </div>
   );
 };
